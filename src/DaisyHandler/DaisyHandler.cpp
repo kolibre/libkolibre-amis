@@ -552,7 +552,7 @@ void DaisyHandler::join_threads()
  *
  * @return Returns true on success
  */
-bool DaisyHandler::setupBook()
+bool DaisyHandler::setupBook(bool withBookmarks)
 {
     HandlerState currentState = getState();
 
@@ -611,7 +611,7 @@ bool DaisyHandler::setupBook()
         err.setSourceModuleName(amis::module_DaisyHandler);
         reportGeneralError(err);
     }
-    else
+    else if (withBookmarks)
     {
         //this function also initializes the mpBmk object
         setupBookmarks(uid, checksum);
@@ -646,7 +646,7 @@ bool DaisyHandler::setupBook()
     }
 
     //load lastmark
-    if (mpBmk != NULL && mbStartAtLastmark == true)
+    if (withBookmarks && mpBmk != NULL && mbStartAtLastmark == true)
     {
         PositionData* pos_data = NULL;
         pos_data = mpBmk->getLastmark();
@@ -676,7 +676,7 @@ bool DaisyHandler::setupBook()
             playMediaGroup(pMedia);
         }
     }
-    else
+    else if (withBookmarks)
     {
         playMediaGroup(pMedia);
     }

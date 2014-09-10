@@ -67,7 +67,7 @@ public:
     bool openBook(std::string);
 
     // Setup bookmarks, initial phrase etc..
-    bool setupBook();
+    bool setupBook(bool withBookmarks = true);
 
     // If we continue from a lastmark position
     bool continueFromLastmark();
