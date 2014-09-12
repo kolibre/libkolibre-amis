@@ -4150,6 +4150,38 @@ bool DaisyHandler::playTitle()
 }
 
 /**
+ * Get the source file containing the book title
+ *
+ * @return Returns an empty string if source not found.
+ */
+std::string DaisyHandler::getTitleSrc()
+{
+    std::string titleSrc = "";
+    if (lockMutex(&dhInstanceMutex))
+    {
+        LOG4CXX_ERROR(amisDaisyHandlerLog, "mutex lock failed");
+    }
+
+    if (mpTitle->getNumberOfAudioClips() > 0)
+    {
+        if (mpTitle->getNumberOfAudioClips() > 1)
+            LOG4CXX_WARN(amisDaisyHandlerLog,
+                    "**TITLEAUDIO: This MediaNode has more than 1 audio clip**");
+
+        AudioNode* p_audio = NULL;
+        p_audio = mpTitle->getAudio(0);
+        titleSrc = p_audio->getSrc();
+    }
+
+    if (unlockMutex(&dhInstanceMutex))
+    {
+        LOG4CXX_ERROR(amisDaisyHandlerLog, "mutex unlock failed");
+    }
+
+    return titleSrc;
+}
+
+/**
  * Play media group
  *
  * @param pMedia Media group with audio

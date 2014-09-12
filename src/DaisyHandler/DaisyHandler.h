@@ -315,6 +315,7 @@ public:
 
     // Info functions
     bool playTitle();
+    std::string getTitleSrc();
 
     void reportGeneralError(AmisError err);
     std::string getFilePath();
