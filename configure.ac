@@ -90,7 +90,7 @@ dnl -----------------------------------------------
 dnl Check for libkolibre-xmlreader
 dnl -----------------------------------------------
 
-PKG_CHECK_MODULES(LIBKOLIBREXMLREADER, libkolibre-xmlreader >= 0.0.1)
+PKG_CHECK_MODULES(LIBKOLIBREXMLREADER, libkolibre-xmlreader >= 1.0.0)
 
 AC_SUBST(LIBKOLIBREXMLREADER_LIBS)
 AC_SUBST(LIBKOLIBREXMLREADER_CFLAGS)
